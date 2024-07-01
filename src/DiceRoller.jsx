@@ -3,8 +3,8 @@ import React, { useState } from 'react';
 // Define the data arrays
 const array1 = [-10, -7.5, -5.0, -2.5, .5, .5, 2.5,5.0,7.5,10 ];
 const array2 = [-17.5, -12.5, -10.0, -7.5, -5.0, -2.5, 5, 7.5, 10, 25];
-const array3 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-const array4 = [1,2,3,4,5,6,7,8,9,10];
+const array3 = [-10, -7.5, -5, -2.5, -2.5, 3.5, 5, 6.5, 7.5, 12.5];
+const array4 = [-10, -7.5, -5, -2.5, -2.5, 3.5, 5, 6.5, 7.5, 12.5];
 
 const DiceRoller = () => {
   const [results, setResults] = useState([]);
@@ -31,8 +31,8 @@ const DiceRoller = () => {
 
   return (
     <div>
-      <h1>Dice Roller</h1>
-      <button onClick={rollDice}>Roll Dice</button>
+      <h1>Big Country Player Generator</h1>
+      <button onClick={rollDice}>Generate Player</button>
       {results.length > 0 && (
         <div>
           <p>Result 1: {results[0]}</p>
