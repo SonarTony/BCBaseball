@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import './BCgame.css';
 
 const BCgame = () => {
   // State variables to hold input values and results
@@ -24,12 +25,14 @@ const BCgame = () => {
     setDifferential(homeDifferential);
   };
 
-  return (
-    <div>
-      <h1>Game Page</h1>
-      <form onSubmit={handleSubmit}>
+return (
+  <div>
+    <h1>Game Page</h1>
+    <form onSubmit={handleSubmit} className="ratings-form">
+      <div className="ratings-column">
+        <h2>Home Team</h2>
         <div>
-          <label>Home Team Rating: </label>
+          <label>Team Rating: </label>
           <input
             type="number"
             value={homeTeamRating}
@@ -37,15 +40,18 @@ const BCgame = () => {
           />
         </div>
         <div>
-          <label>Home Pitcher Rating: </label>
+          <label>Pitcher Rating: </label>
           <input
             type="number"
             value={homePitcherRating}
             onChange={(e) => setHomePitcherRating(e.target.value)}
           />
         </div>
+      </div>
+      <div className="ratings-column">
+        <h2>Away Team</h2>
         <div>
-          <label>Away Team Rating: </label>
+          <label>Team Rating: </label>
           <input
             type="number"
             value={awayTeamRating}
@@ -53,24 +59,24 @@ const BCgame = () => {
           />
         </div>
         <div>
-          <label>Away Pitcher Rating: </label>
+          <label>Pitcher Rating: </label>
           <input
             type="number"
             value={awayPitcherRating}
             onChange={(e) => setAwayPitcherRating(e.target.value)}
           />
         </div>
-        <button type="submit">Calculate</button>
-      </form>
-      <div>
-        <h2>Results</h2>
-        <p>Home Total Rating: {homeTotal}</p>
-        <p>Away Total Rating: {awayTotal}</p>
-        <p>Home Differential: {differential}</p>
       </div>
+      <button type="submit" className="calculate-button">Calculate</button>
+    </form>
+    <div>
+      <h2>Results</h2>
+      <p>Home Total Rating: {homeTotal}</p>
+      <p>Away Total Rating: {awayTotal}</p>
+      <p>Home Differential: {differential}</p>
     </div>
-  );
+  </div>
+);
 };
-
 
 export default BCgame;
