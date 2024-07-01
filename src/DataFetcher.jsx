@@ -4,7 +4,10 @@ const DataFetcher = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   useEffect(() => {
-    const apiUrl = 'https://randomuser.me/api/?results=1&inc=name&noinfo';
+    fetchData();
+  }, []);
+  const fetchData = () => {
+    const apiUrl = 'https://randomuser.me/api/?results=1&inc=name&noinfo&gender=male&nat=US';
     fetch(apiUrl)
       .then(response => {
         if (!response.ok) {
@@ -20,19 +23,19 @@ const DataFetcher = () => {
         setError(error);
         setLoading(false);
       });
-  }, []);
+  };
+  const handleButtonClick = () => {
+    fetchData();
+  };
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error fetching data: {error.message}</p>;
   return (
     <div>
       <h2>Fetched Data</h2>
-      {data.results && data.results.map((result, index) => (
-        <div key={index}>
-          <p>Title: {result.name.title}</p>
-          <p>First Name: {result.name.first}</p>
-          <p>Last Name: {result.name.last}</p>
-        </div>
-      ))}
+      <p>Title: {data.results[0]?.name.title}</p>
+      <p>First Name: {data.results[0]?.name.first}</p>
+      <p>Last Name: {data.results[0]?.name.last}</p>
+      <button onClick={handleButtonClick}>Fetch New Name</button>
     </div>
   );
 };

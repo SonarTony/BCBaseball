@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import DataFetcher from './DataFetcher';
 
 // Define the data arrays
 const array1 = [-10, -7.5, -5.0, -2.5, .5, .5, 2.5,5.0,7.5,10 ];
@@ -24,10 +25,12 @@ const DiceRoller = () => {
 
     //calculate player rating
     const final = 62.5+ result1 + result2 + result3 + result4;
-
+    
     // Set the results to the state
     setResults([result1, result2, result3, result4, final]);
-  };
+      
+    
+      };
 
   return (
     <div>
@@ -40,6 +43,7 @@ const DiceRoller = () => {
           <p>Result 3: {results[2]}</p>
           <p>Result 4: {results[3]}</p>
           <p>final: {results[4]}</p>
+          
         </div>
       )}
     </div>
