@@ -3,5 +3,29 @@
   display: flex;
   justify-content: space-around;
   align-items: flex-start;
-  margin: 20px 0
+  margin: 20px 0;
+}
+
+.ratings-column {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: black;
+}
+
+.ratings-column h2 {
+  margin-top: 0;
+}
+
+.ratings-column div {
+  margin-bottom: 10px;
+}
+
+.calculate-button, .roll-button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
 }
