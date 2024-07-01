@@ -32,7 +32,6 @@ const DataFetcher = () => {
   return (
     <div>
       <h2>Fetched Data</h2>
-      <p>Title: {data.results[0]?.name.title}</p>
       <p>First Name: {data.results[0]?.name.first}</p>
       <p>Last Name: {data.results[0]?.name.last}</p>
       <button onClick={handleButtonClick}>Fetch New Name</button>
