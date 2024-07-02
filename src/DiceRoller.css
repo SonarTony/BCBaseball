@@ -2,7 +2,7 @@
 .column {
   float: left;
   width: 50%;
-  
+   
   }
 
 /* Clear floats after the columns */
@@ -10,4 +10,11 @@
   content: "";
   display: table;
   clear: both;
+  
+}
+
+ul {
+  list-style-type: none; /* Remove bullets */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margins */
 }

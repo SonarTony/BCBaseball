@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import './DiceRoller.css';
+import * as XLSX from 'xlsx';
 
 
 // Define the data arrays
@@ -11,6 +12,10 @@ const array4 = [-11.5, -7.5, -6.5, -3.5, -2.5, 2.5, 3.5, 5, 7.5, 10];
 const DiceRoller = () => {
   const [results, setResults] = useState([]);
   const [results2, setResults2] = useState([]);
+  const [playerName, setPlayerName] = useState('');
+  const [playerRole, setPlayerRole] = useState('fielder');
+  const [roster, setRoster] = useState([]);
+  const [playerRating, setPlayerRating] = useState('');
 
   const rollDice = () => {
     // Roll four six-sided dice
@@ -63,6 +68,21 @@ const DiceRoller = () => {
 
         };
 
+  const addPlayerToRoster = () => {
+    if (playerName.trim() !== '' && playerRating.trim() !== '') {
+      setRoster([...roster, { name: playerName, role: playerRole, rating: playerRating }]);
+      setPlayerName(''); // Clear the input fields
+      setPlayerRating('');
+    }
+  };
+
+  const exportToExcel = () => {
+    const ws = XLSX.utils.json_to_sheet(roster);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Roster');
+    XLSX.writeFile(wb, 'roster.xlsx');
+  };
+
   return (
     <div>
       
@@ -94,8 +114,43 @@ const DiceRoller = () => {
         )}
       
       </div>
+      
+ <div>
+    <div class="row"> 
+      <div class="column">
+        <h2>Add Player to Roster</h2>
+        <input
+          type="text"
+          placeholder="Enter player name"
+          value={playerName}
+          onChange={(e) => setPlayerName(e.target.value)}
+        />
+        <select value={playerRole} onChange={(e) => setPlayerRole(e.target.value)}>
+          <option value="fielder">Fielder</option>
+          <option value="pitcher">Pitcher</option>
+        </select>
+        <input
+          type="number"
+          placeholder="Enter player rating"
+          value={playerRating}
+          onChange={(e) => setPlayerRating(e.target.value)}
+        />
+        <button onClick={addPlayerToRoster}>Add to Roster</button>
+      </div>
+      {roster.length > 0 && (
+        <div>
+          <h2>Roster List</h2>
+          <ul >
+            {roster.map((player, index) => (
+              <li key={index}>{player.name} - {player.role} (Rating: {player.rating})</li>
+            ))}
+          </ul>
+          <button onClick={exportToExcel}>Export to Excel</button>
         </div>
-      );
+      )}
+    </div>
+    </div>
+      </div>
+  );
 };
-
 export default DiceRoller;
